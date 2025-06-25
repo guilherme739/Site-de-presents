@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js" 
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/guilherme739/Site-de-presents#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "mysql2": "^3.14.1"
   }
 }
