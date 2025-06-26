@@ -10,6 +10,8 @@ app.engine('handlebars', engine());
 app.set('view engine','handlebars');
 app.set('views','./views');
 
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')); 
+
 
 const conexao = mysql.createConnection( {
     host: 'localhost',
@@ -32,6 +34,6 @@ app.get("/", function(req, res){
     res.render('index');
 });
 
-app.listen(8080);
+app.listen(8081);
 
 
