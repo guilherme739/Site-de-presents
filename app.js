@@ -11,6 +11,7 @@ app.set('view engine','handlebars');
 app.set('views','./views');
 
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')); 
+app.use(express.static('static'));
 
 
 const conexao = mysql.createConnection( {
@@ -33,6 +34,12 @@ conexao.connect((erro) => {
 app.get("/", function(req, res){
     res.render('index');
 });
+
+
+app.get("/presentes", function(req, res){
+    res.render('presentes');
+});
+
 
 app.listen(8081);
 
