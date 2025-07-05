@@ -31,14 +31,38 @@ conexao.connect((erro) => {
     console.log('Conexão com o banco de dados estabelecida com sucesso!');
 });
 
-app.get("/", function(req, res){
-    res.render('index');
-});
+app.get("/", function(req, res){;
+    let sql = 'SELECT * FROM casamento';
+    conexao.query(sql, function (erro, casamento_qs) {
+    if (erro) {
+        conexao.error(' Erro ao consultar casamento:' , erro)
+        res.status(500).send('Erro ao consultar casamento');
+        return;
+        }
+        res.render('index', { casamento: casamento_qs});
+    });    
+}
+);
 
 
-app.get("/presentes", function(req, res){
-    res.render('presentes');
+app.get("/casamento/:id/detalhes", function(req, res){
+    const id = req.params.id;
+
+    const sql = 'SELECT * FROM casamento WHERE id = ?';
+    
+    conexao.query(sql, [id], function (erro, casamento_qs) {
+        if (erro) {
+            console.error('Erro ao consultar casamentos:', erro);
+            res.status(500).send('Erro ao Consultar casamentos');
+            return;
+        }
+        if (casamento_qs.length === 0) {
+            return res.status(404).send('Casamento não encontrado');
+        }
+        res.render('casamento', {casamento: casamento_qs[0] });
+    });
 });
+
 
 
 app.listen(8081);

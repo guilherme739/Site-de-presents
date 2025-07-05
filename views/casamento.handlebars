@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Casamentos</title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mb-4">
+        {{#if casamento.length}}
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                {{#each casamento}}
+                    <div class="col">
+                        <a href="/casamento/{{this.id}}/detalhes" class="text-decoration-none">
+                            <div class="card p-3 shadow-sm h-100">
+                                <h2>{{this.titulo}}</h2>
+                                <p><strong>Noivo:</strong> {{this.noivo}}</p>
+                                <p><strong>Noiva:</strong> {{this.noiva}}</p>
+                                <p><strong>Data:</strong> {{this.data_casamento}}</p>
+                            </div>
+                        </a>
+                    </div>
+                {{/each}}
+            </div>
+        {{else}}
+            <p class="text-muted text-stard">Sem casamentos no momento.</p>
+        {{/if}}
+    </div>
+</body>
+</html>
