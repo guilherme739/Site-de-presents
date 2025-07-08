@@ -6,6 +6,8 @@ const { engine } = require ('express-handlebars');
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+
 app.engine('handlebars', engine());
 app.set('view engine','handlebars');
 app.set('views','./views');
@@ -35,7 +37,7 @@ app.get("/", function(req, res){;
     let sql = 'SELECT * FROM casamento';
     conexao.query(sql, function (erro, casamento_qs) {
     if (erro) {
-        conexao.error(' Erro ao consultar casamento:' , erro)
+        conexao.error(' Erro ao consultar casamento:' , erro);
         res.status(500).send('Erro ao consultar casamento');
         return;
         }
@@ -59,10 +61,61 @@ app.get("/casamento/:id/detalhes", function(req, res){
         if (casamento_qs.length === 0) {
             return res.status(404).send('Casamento não encontrado');
         }
-        res.render('casamento', {casamento: casamento_qs[0] });
+        res.render('casamento', {casamento: [casamento_qs[0]] });
     });
 });
 
+app.get('/casamento/:id/cadastro', function (req, res) {
+    const id = req.params.id;
+    
+      const sql = 'SELECT * FROM casamento WHERE id = ?';
+    
+    conexao.query(sql, [id], function (erro, casamento_qs) {
+        if (erro) {
+            console.error('Erro ao consultar casamentos:', erro);
+            res.status(500).send('Erro ao Consultar casamentos');
+            return;
+        }
+        if (casamento_qs.length === 0) {
+            return res.status(404).send('Casamento não encontrado');
+        }
+        res.render('cadastro', {casamento: [casamento_qs[0]] });
+    });
+});
+
+
+app.post('/casamento/:id/detalhes', (req, res) => {
+    const id = req.params.id;
+    const {nome} = req.body;
+    const sql = 'INSERT INTO convidados (nome) VALUES (?)';
+    conexao.query(sql, [nome], (erro, resultado) => {
+        if (erro) {
+            console.error('Erro ao inserir convidado:' , erro);
+            return res.status(500).send('Erro ao adicionar convidados');
+        }
+        res.redirect(`/casamento/${id}/presentes`);
+    });
+});
+
+
+
+app.get("/casamento/:id/presentes", function(req, res){
+    const id = req.params.id;
+
+    const sql = 'SELECT * FROM presentes';
+    
+    conexao.query(sql, function (erro, presentes_qs) {
+        if (erro) {
+            console.error('Erro ao consultar presentes:', erro);
+            res.status(500).send('Erro ao consultar presentes');
+            return;
+        }
+        if (presentes_qs.length === 0) {
+            return res.status(404).send('Presentes não encontrados');
+        } 
+        res.render('presentes', {presentes: presentes_qs });
+    });
+});
 
 
 app.listen(8081);

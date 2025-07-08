@@ -1,4 +1,4 @@
-<div class="conteinar-fluid">
+<div class="container-fluid">
     <header class="row display-6 p-5 text-center background_jm" style="background-color: rgb(253, 152, 215);">
         <h1 class="display-6 ">
             Bem-Vindo
@@ -12,187 +12,28 @@
 
         <!-- Team Members -->
         <div class="row g-4">
-            <!-- Presente Mini Aspirador de pó-->
-            <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="/img/mini_aspirador.png" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Mini Aspirador de Pó para Noivos Preguiçosos</h5>
-                        <p class="text-muted mb-4">R$ 319,99</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
-            <!--Presente INSS-->
-            <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="/img/INSS.png" alt="presente INSS" class="team-image w-100">
-                    <div class="p-4"> 
-                        <h5>Ajuda na Aposentadoria dos Noivos</h5>
-                        <p class="text-muted mb-4">R$ 1.809,00
-                        </p>
+        {{#if presentes.length}}
+            {{#each presentes}}
+                <!-- Presente Mini Aspirador de pó-->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card h-100">
+                        <img src="{{imagem}}" alt="{{nome}}" class="team-image w-100">
+                        <div class="p-4">
+                            <h5>{{nome}}</h5>
+                            <p class="text-muted mb-4">R$ {{preco}}</p>
                         <button role="button" class="btn btn-danger">Presentear</button>
+                        </div>
                     </div>
                 </div>
+            {{/each}}
+        {{else}}
+            <div>
+                <p>
+                    Sem Presentes Disponiveis.
+                </p>
             </div>
-
-            <!-- Presente Coberta -->
-            <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="/img/presente_cobertor.png" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Coberta para a noiva estar sempre coberta de razão</h5>
-                        <p class="text-muted mb-4">R$ 120,79</p>
-                        <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Presente Tampão de ouvido -->
-            <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="/img/presente_tampao.png" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Tampão de ouvido para quando o noivo roncar</h5>
-                        <p class="text-muted mb-4">R$ 85,50</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Presente ajuda na viagem -->
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="/img/presente_viagem.png" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                    
-                        <h5>Deus te abençoou e você resolveu ajudar na viagem</h5>
-                        <p class="text-muted mb-4">R$ 2.784,99.</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/04/terry-crews-todo-mundo-odeia-o-chris.jpg?w=1200&h=1200&crop=1" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Só pra não dizer que não dei nada</h5>
-                        <p class="text-muted mb-4">R$ 35,60</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Corte de cabelo do noivo por um ano</h5>
-                        <p class="text-muted mb-4">R$ 450,00</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Para a noiva não atrasar</h5>
-                        <p class="text-muted mb-4">R$ 125,00.</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4"> 
-                        <h5>Um pedaço da gravata reservado</h5>
-                        <p class="text-muted mb-4">R$ 58,50</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Para o primeiro churrasco na casa nova</h5>
-                        <p class="text-muted mb-4">R$ 262,40</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Curso de culinaria para o noivo</h5>
-                        <p class="text-muted mb-4">R$250,99</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Kit calmante para a noiva não se estressar</h5>
-                        <p class="text-muted mb-4">R$ 89,50 </p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Ajudar os noivos a quitarem o casamento</h5>
-                        <p class="text-muted mb-4">R$ 3.200,50</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Aumente a sua sorte em pegar o buquê</h5>
-                        <p class="text-muted mb-4">R$ 322,90</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Vale para a noiva deixar o noivo jogar em paz</h5>
-                        <p class="text-muted mb-4">R$ 534,67</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
-             <div class="col-lg-3 col-md-6">
-                <div class="team-card h-100">
-                    <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Team member" class="team-image w-100">
-                    <div class="p-4">
-                        <h5>Furar a fila no jantar</h5>
-                        <p class="text-muted mb-4">R$ 87,93</p>
-                       <button role="button" class="btn btn-danger">Presentear</button>
-                    </div>
-                </div>
-            </div>
-
+        {{/if}}
         </div>
-    </div>
 </section>
 
            

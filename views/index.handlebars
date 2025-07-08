@@ -4,24 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+
+    <style>
+
+        .btn-danger{
+            background-color: pink;
+            border-color: pink;
+        }
+    </style>
+
+    <style>
+    .card:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    }
+    </style>
 </head>
 <body>
-    <div class="container" style="width: 18rem;">
-        <div class="card">
-          
-                {{#if casamento.length}}
-                {{#each casamento}}
-                    <a href="/casamento/{{this.id}}/detalhes" class="text-decoration-nome">
-                        <div>
-                            <h2>{{this.titulo}}</h2>
+    <div class="container" >
+
+         <header class="">
+                    <h1>
+                    Esse é um site de presentes de casamento! Escolha a pagina do casal do qual você é convidado, e se divirta colaborando com esse momento tão especial!</h1>
+                </header>
+        
+            <div class=" d-flex justify-content-center">
+
+                <div class="">
+                    {{#if casamento.length}}
+                    {{#each casamento}}
+                    <div class="">
+                        <div class="card btn btn-danger px-5 mx-2 border border-danger">
+                            <div class="card-body" style="">
+                                <a href="/casamento/{{id}}/detalhes" class="text-decoration-none"> 
+                                    <div class="mx-3">
+                                        <h2 class="text-dark py-3 px-5">{{titulo}}</h2>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </a>
-                {{/each}}
-            {{else}}
-                <p>Sem Casamentos no momento;</p>
-            {{/if}}
-            
-        </div>
+                    </div>
+                    {{/each}}
+                   {{else}}
+                    <p>Sem Casamentos no momento;</p>
+                 {{/if}}
+                </div>
+
+        </div>     
     </div>
 </body>
 </html>
