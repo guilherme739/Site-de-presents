@@ -1,63 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Site de Presentes de Casamento</title>
+ 
+  <style>
 
-    <style>
+    * {
 
-        .btn-danger{
-            background-color: pink;
-            border-color: pink;
-        }
-    </style>
+      box-sizing: border-box;
 
-    <style>
-    .card:hover {
-    transform: scale(1.03);
-    transition: transform 0.3s ease;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    cursor: pointer;
     }
-    </style>
+ 
+    body, html {
+
+      margin: 0;
+
+      padding: 0;
+
+      height: 100%;
+
+      font-family: Arial, sans-serif;
+
+      background-color: #fffafc;
+
+    }
+ 
+    .container {
+
+      height: 100%;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      text-align: center;
+
+      padding: 2rem;
+
+    }
+ 
+    header h1 {
+
+      font-size: 1.8rem;
+
+      max-width: 800px;
+
+      margin-bottom: 3rem;
+
+      color: #333;
+
+    }
+ 
+    .botoes-container {
+
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 2rem;
+
+    }
+ 
+    .card {
+
+      background-color: pink;
+
+      padding: 2rem 3rem;
+
+      border: 2px solid pink;
+
+      border-radius: 12px;
+
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      min-width: 200px;
+
+    }
+ 
+    .card:hover {
+
+      transform: scale(1.05);
+
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+
+      cursor: pointer;
+
+    }
+ 
+    .card h2 {
+
+      margin: 0;
+
+      font-size: 1.5rem;
+
+      color: #333;
+
+    }
+ 
+    .card a {
+
+      text-decoration: none;
+
+      color: inherit;
+
+    }
+ 
+    @media (max-width: 600px) {
+
+      header h1 {
+
+        font-size: 1.2rem;
+
+      }
+ 
+      .card {
+
+        padding: 1.5rem 2rem;
+
+      }
+
+    }
+</style>
 </head>
 <body>
-    <div class="container" >
+ 
+  <div class="container">
+<header>
+<h1>
 
-         <header class="">
-                    <h1>
-                    Esse é um site de presentes de casamento! Escolha a pagina do casal do qual você é convidado, e se divirta colaborando com esse momento tão especial!</h1>
-                </header>
-        
-            <div class=" d-flex justify-content-center">
+        Esse é um site de presentes de casamento! Escolha a página do casal do qual você é convidado, e se divirta colaborando com esse momento tão especial!
+</h1>
+</header>
 
-                <div class="">
-                    {{#if casamento.length}}
-                    {{#each casamento}}
-                    <div class="">
-                        <div class="card btn btn-danger px-5 mx-2 border border-danger">
-                            <div class="card-body" style="">
-                                <a href="/casamento/{{id}}/detalhes" class="text-decoration-none"> 
-                                    <div class="mx-3">
-                                        <h2 class="text-dark py-3 px-5">{{titulo}}</h2>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {{/each}}
-                   {{else}}
-                    <p>Sem Casamentos no momento;</p>
-                 {{/if}}
-                </div>
-
-        </div>     
-    </div>
+ 
+<div class="botoes-container">
+<!-- Simulação de casamentos -->
+<div class="card">
+<a href="/casamento/1/detalhes">
+<h2>José & Maria</h2>
+</a>
+</div>
+<div class="card">
+<a href="/casamento/2/detalhes">
+<h2>João & Gabriela</h2>
+</a>
+</div>
+<div class="card">
+<a href="/casamento/3/detalhes">
+<h2>Lucas & Julia</h2>
+</a>
+</div>
+</div>
+</div>
+ 
 </body>
 </html>
 
-
-
-
-
+ 

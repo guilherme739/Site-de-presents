@@ -1,43 +1,111 @@
 <div class="container-fluid">
     <header class="row display-6 p-5 text-center background_jm" style="background-color: rgb(253, 152, 215);">
-        <h1 class="display-6 ">
-            Bem-Vindo
-        </h1>
+        <h1 class="display-6 ">Bem-Vindo</h1>
     </header>
 
     <!-- Sessão para os presentes -->   
-    <section class="py-5 bg-soft">
     <div class="container py-5">
-       
-
-        <!-- Team Members -->
-        <div class="row g-4">
-        {{#if presentes.length}}
-            {{#each presentes}}
-                <!-- Presente Mini Aspirador de pó-->
-                <div class="col-lg-3 col-md-6">
-                    <div class="team-card h-100">
-                        <img src="{{imagem}}" alt="{{nome}}" class="team-image w-100">
-                        <div class="p-4">
-                            <h5>{{nome}}</h5>
-                            <p class="text-muted mb-4">R$ {{preco}}</p>
-                        <button role="button" class="btn btn-danger">Presentear</button>
+        <section class="py-5 bg-soft">
+            <div class="row g-4" id="presentes">
+                {{#if presentes.length}}
+                    {{#each presentes}}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="team-card h-100">
+                                <img src="{{imagem}}" alt="{{nome}}" class="team-image w-100">
+                                <div class="p-4">
+                                    <h5>{{nome}}</h5>
+                                    <p class="text-muted mb-4">R$ {{preco}}</p>
+                                    <button role="button" class="btn btn-danger" onclick="adicionarAoCarrinho({{@index}})">Presentear</button>
+                                </div>
+                            </div>
                         </div>
+                    {{/each}}
+                {{else}}
+                    <div>
+                        <p>Sem Presentes Disponíveis.</p>
                     </div>
-                </div>
-            {{/each}}
-        {{else}}
-            <div>
-                <p>
-                    Sem Presentes Disponiveis.
-                </p>
+                {{/if}}
             </div>
-        {{/if}}
-        </div>
-</section>
+        </section>
 
-           
-           
-        </div>
+        <!-- CARRINHO -->
+        <h2>🛒 Carrinho</h2>
+        <ul id="carrinho" class="list-group mb-3"></ul>
+        <div id="alert"></div>
+        <p><strong>Total:</strong> R$ <span id="total">0.00</span></p>
+        <p><strong>Frete:</strong> R$ <span id="frete">0.00</span></p>
+        <button type="button" class="btn btn-success" onclick="finalizarPedidos()">👨‍🍳 Finalizar Pedido</button>
+        <button type="button" class="btn btn-secondary" onclick="LimparCarrinho()">🗑 Limpar Carrinho</button>
     </div>
+
+    <!-- JSON com os presentes vindos do backend -->
+    <script>
+        const presentes = [
+            {{#each presentes}}
+                {
+                    nome: "{{nome}}",
+                    preco: {{preco}},
+                    imagem: "{{imagem}}"
+                }{{#unless @last}},{{/unless}}
+            {{/each}}
+        ];
+    </script>
+
+    <!-- SCRIPT DO CARRINHO -->
+    <script>
+        let carrinho = [];
+
+        function adicionarAoCarrinho(index) {
+            carrinho.push(presentes[index]);
+            atualizarCarrinho();
+        }
+
+        function removerItemDoCarrinho(index) {
+            carrinho.splice(index, 1);
+            atualizarCarrinho();
+        }
+
+        function atualizarCarrinho() {
+            const lista = document.querySelector("#carrinho");
+            lista.innerHTML = "";
+
+            let total = 0;
+
+            carrinho.forEach((item, index) => {
+                const li = document.createElement("li");
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+                li.innerHTML = `
+                    <span>${item.nome} - R$ ${item.preco.toFixed(2)}</span>
+                    <button class="btn btn-sm btn-outline-danger" onclick="removerItemDoCarrinho(${index})">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                `;
+                lista.appendChild(li);
+                total += item.preco;
+            });
+
+          
+        }
+
+
+      
+        function finalizarPedidos() {
+            if (carrinho.length === 0) {
+                alert("Carrinho vazio. Adicione presentes antes de finalizar.");
+                return;
+            }
+
+            const nomes = carrinho.map(p => p.nome).join(", ");
+            const total = document.querySelector("#total").textContent;
+            const frete = document.querySelector("#frete").textContent;
+            const final = (parseFloat(total) + parseFloat(frete)).toFixed(2);
+
+            alert(`Pedido finalizado!\nPresentes: ${nomes}}`);
+        }
+
+        function LimparCarrinho() {
+            carrinho = [];
+            atualizarCarrinho();
+        }
+    </script>
 </div>

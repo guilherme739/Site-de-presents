@@ -33,18 +33,32 @@ conexao.connect((erro) => {
     console.log('Conexão com o banco de dados estabelecida com sucesso!');
 });
 
-app.get("/", function(req, res){;
+app.get("/", function(req, res){
     let sql = 'SELECT * FROM casamento';
     conexao.query(sql, function (erro, casamento_qs) {
-    if (erro) {
-        conexao.error(' Erro ao consultar casamento:' , erro);
-        res.status(500).send('Erro ao consultar casamento');
-        return;
+        if (erro) {
+            conexao.error(' Erro ao consultar casamento:' , erro);
+            res.status(500).send('Erro ao consultar casamento');
+            return;
         }
-        res.render('index', { casamento: casamento_qs});
+ 
+        // FORMATAÇÃO DAS DATAS AQUI
+        const casamentosFormatados = casamento_qs.map(c => {
+            const data = new Date(c.data_casamento);
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0');
+            const ano = data.getFullYear();
+ 
+            return {
+                ...c,
+                data_casamento: `${dia}/${mes}/${ano}`
+            };
+        });
+ 
+        // envia o array já formatado para o template
+        res.render('index', { casamento: casamentosFormatados });
     });    
-}
-);
+});
 
 
 app.get("/casamento/:id/detalhes", function(req, res){
@@ -116,6 +130,8 @@ app.get("/casamento/:id/presentes", function(req, res){
         res.render('presentes', {presentes: presentes_qs });
     });
 });
+
+
 
 
 app.listen(8081);
