@@ -15,23 +15,20 @@
         </header>
         <div class="row">
             {{#if casamento.length}}
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     {{#each casamento}}
-                        <div class="">
-                            <a href="/casamento/{{id}}/detalhes" class="text-decoration-none text-dark"></a>
-                                <div class="card p-3 shadow-sm h-100" style="width: 150vh;">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="card p-5 border border-danger rounded">
                                     <h2>{{titulo}}</h2>
-                                    <p><strong>Data:</strong> {{data_casamento}}</p>
+                                    <p class="card-body"><strong>Data:</strong> {{data_casamento}}</p>
                                     <form action="/casamento/{{id}}/detalhes" method="post">
-                                        <label class="" for="nome">Convidado</label>
-                                        <input type="text" id="nome" name="nome" placeholder="Nome Completo" class="" required>
-                                        <button  type="submit" class="">Enviar</button>
+                                        <label class="px-1" for="nome">Convidado</label>
+                                        <input type="text" id="nome" name="nome" placeholder="Nome Completo" class="btn btn-outiline-danger border border-danger rounded" required>
+                                        <button  type="submit" class="btn btn-outiline-danger border border-danger rounded">Enviar</button>
                                     </form> 
                                 
                                 </div>
                         </div>
-                    {{/each}}
-                </div>
+                    {{/each}}   
             {{else}}
                 <p class="text-muted text-stard">Sem casamentos no momento.</p>
             {{/if}}
