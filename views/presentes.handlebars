@@ -1,6 +1,6 @@
 <div class="container-md-12">
     <header class="row">
-        <img src="/img/jose_maria.png" class="w-80" alt="{{this.nome}}">
+        <img src="{{this.imagens}}" class="w-80" alt="{{this.nome}}">
     </header>
 
 
@@ -88,7 +88,7 @@
                 li.innerHTML = `
                     <span>${item.nome} - R$ ${item.preco.toFixed(2)}</span>
                     <button class="btn btn-sm btn-outline-danger" onclick="removerItemDoCarrinho(${index})">
-                        <i class="bi bi-trash">remover</i>
+                        <i class="bi bi-trash">Remover</i>
                     </button>
                 `;
                 lista.appendChild(li);
