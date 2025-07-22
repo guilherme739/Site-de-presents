@@ -1,6 +1,9 @@
 <div class="container-md-12">
     <header class="row">
-        <img src="{{this.imagens}}" class="w-80" alt="{{this.nome}}">
+                <img  src="/img/teste.jpeg"  alt="{{thicasamento.nome}}" class="">
+          
+            
+
     </header>
 
 
@@ -15,10 +18,10 @@
                         <div class="col-lg-4">
                             <div class="team-card h-100 ">
                                 <img src="{{imagem}}" alt="{{nome}}" class="team-image w-100">
-                                <div class="p-3">
+                                <div class="p-4">
                                     <h5>{{nome}}</h5>
                                     <p class="text-muted mb-4">R$ {{preco}}</p>
-                                    <button role="button" class="btn btn-danger" onclick="adicionarAoCarrinho({{@index}})">Presentear</button>
+                                    <button role="button" class="btn btn-danger " onclick="adicionarAoCarrinho({{@index}})">Presentear</button>
                                 </div>
                             </div>
                         </div>
@@ -35,17 +38,21 @@
     <div class="col-4">
             <!-- Sessão para os presentes -->   
     
-    <div class="container">
+    <div class="container m-2 position-sticky top-0">
         <!-- CARRINHO -->
-        <div class="">
-            <h2>🛒 Carrinho De Presentes</h2>
-        <ul id="carrinho" class="list-group mb-3"></ul>
-        <div id="alert"></div>
-          <p><strong>Total:</strong>R$ <span id="total">0.00</span></p>
-        <button type="button" class="btn btn-success" onclick="finalizarPedidos()">👨‍🍳 Finalizar Pedido</button>
-        <button type="button" class="btn btn-secondary" onclick="LimparCarrinho()">🗑 Limpar Carrinho</button>
+            <div class="container-fluid text-center ">
+                <h2> Lista De Presentes</h2>
+            <ul id="carrinho" class="list-group mb-3"></ul>
+            <div id="alert"></div>
+            <p><strong>Total:</strong>R$ <span id="total">0.00</span></p>
+            <button type="button" class="btn btn-success" onclick="finalizarPedidos()">🎁 Registrar Presente</button>
+            <button type="button" class="btn btn-secondary" onclick="LimparCarrinho()">🗑 Limpar Lista</button>
+            <div class="justify-content-center ">
+                 <img src="/img/qrcod.jpeg" alt="pagamento" class="rounded mx-auto d-block"> 
+            </div>
+           
+            </div>
         </div>
-    </div>
     </div>
   </div>
 </div>
@@ -108,7 +115,7 @@
             }
 
             const nomes = carrinho.map(p => p.nome).join(", ");
-            alert(`Pedido finalizado!\nPresentes: ${nomes} \n`);
+            alert(`Obrigado pela escolha!\nPresentes:\n ${nomes} \n`);
         }
 
         function LimparCarrinho() {

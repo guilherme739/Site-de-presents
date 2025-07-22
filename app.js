@@ -112,83 +112,37 @@ app.post('/casamento/:id/detalhes', (req, res) => {
 });
 
 
-
 app.get("/casamento/:id/presentes", function(req, res){
     const id = req.params.id;
 
     const sql = 'SELECT * FROM presentes';
-
-    const sqlCasamentos = 'SELECT * FROM casamento';
+    const sqlCasamentos = 'SELECT * FROM casamento WHERE id = ?';
     
     conexao.query(sql, function (erro, presentes_qs) {
         if (erro) {
             console.error('Erro ao consultar presentes:', erro);
             res.status(500).send('Erro ao consultar presentes');
+            return res.status(500).send('Erro ao consultar presentes:')
         }
-        if (presentes_qs.length === 0) {
-             conexao.query(sqlCasamentos, (erro2, casamento_qs) => {
-                if (erro2) return res.status(500).send('Erro ao buscar casamentos');
+             conexao.query(sqlCasamentos ,[id],  (erro2, casamento_qs) => {
+                if (erro2) {
+                    
+                    console.error('Erro ao buscar casamentos:', erro2);
+                    return res.status(500).send('Erro ao buscar casamento')
+
+                }
+                  
+                if (casamento_qs.length === 0) {
+                    return res.status(404).send('Casamento não encontrado')
+                }
 
                 res.render('presentes', {
-                    presentes: [],
-                    casamento: casamento_qs,
-                    formAction: `/casamento/${id}/presentes`
+                    presentes: presentes_qs,
+                    casamento: casamento_qs[0],
                 });
              });
-
-            
-            conexao.query(sqlCasamentos, (erro2, casamento_qs) => {
-                if (erro2) return res.status(500).send('Erro ao buscar casamentos.');
-
-                res.render('presentes', {
-                presentes,
-                casamento: casamento_qs,
-                formAction: `/casamento/${id}/presentes`
-               });
-            });
-
-
-        } 
-        res.render('presentes', {presentes: presentes_qs });
     });
 });
-
-
-
-app.get('/produtos/:id/editar', (req, res) => {
-  const id = req.params.id;
-
-  const sqlProduto = `
-    SELECT produtos.*, categorias.nome AS categoria_nome
-    FROM produtos
-    JOIN categorias ON produtos.categoria_id = categorias.id
-    WHERE produtos.id = ?
-  `;
-
-  const sqlCategorias = 'SELECT id, nome FROM categorias';
-
-  conexao.query(sqlProduto, [id], (erro, produto_qs) => {
-    if (erro) return res.status(500).send('Erro ao buscar produto.');
-
-    if (produto_qs.length === 0) return res.status(404).send('Produto não encontrado.');
-
-    const produto = produto_qs[0];
-
-    conexao.query(sqlCategorias, (erro2, categorias_qs) => {
-      if (erro2) return res.status(500).send('Erro ao buscar categorias.');
-
-      res.render('produto_form', {
-        produto,
-        categorias: categorias_qs,
-        formAction: `/produtos/${id}/editar`
-      });
-    });
-  });
-});
-
-
-
 
 app.listen(8081);
-
 

@@ -23,7 +23,15 @@
 
       font-family: Arial, sans-serif;
 
-      background-color: #fffafc;
+      background-image:url(/img/Image.jpeg);
+
+      background-size: cover;
+
+      background-position: center;
+
+    background-repeat: no-repeat;
+
+      background-attachment: fixed;
 
     }
  
@@ -131,33 +139,34 @@
 </style>
 </head>
 <body class="m-4">
- 
+   
 <div class="container">
-  <header>
+  <div class="bg-white " >
     <h1>
       Esse é um site de presentes de casamento! Escolha a página do casal do qual você é convidado, e se divirta colaborando com esse momento tão especial!
     </h1>
-  </header>
+  
 
- 
-  <div class="botoes-container">
-  <!-- Simulação de casamentos -->
+      <div class="botoes-container">
+      <!-- Simulação de casamentos -->
 
-      {{#if casamento.length}}
-        {{#each casamento}}
-        <div class="">
-            <div class="card">
-                <a href="/casamento/{{id}}/detalhes" class="text-decoration-none">
-                    <h2>{{titulo}}</h2>
-                </a>
-            </div>
-        </div>
-        {{/each}}
-        {{else}}
-        <p>Sem Casamentos no momento;</p>
-      {{/if}}
-      
-  </div>
+        {{#if casamento.length}}
+          {{#each casamento}}
+          <div class="">
+              <div class="card">
+                  <a href="/casamento/{{id}}/detalhes" class="text-decoration-none">
+                      <h2>{{titulo}}</h2>
+                  </a>
+              </div>
+          </div>
+          {{/each}}
+          {{else}}
+          <p>Sem Casamentos no momento;</p>
+        {{/if}}
+
+    </div>
+  </div>   
+    
 
 
 </div>

@@ -9,21 +9,20 @@
     </style>
 </head>
 <body>
-     <div class="container mb-4">
+     <div class="container mb-4" >
         <header class="p-5 text-center">
-            <h1>Bem-vindo</h1>
         </header>
-        <div class="row">
+        <div class="row p-2" >
             {{#if casamento.length}}
                     {{#each casamento}}
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                                <div class="card p-5 border border-danger rounded">
-                                    <h2>{{titulo}}</h2>
-                                    <p class="card-body"><strong>Data:</strong> {{data_casamento}}</p>
-                                    <form action="/casamento/{{id}}/detalhes" method="post">
-                                        <label class="px-1" for="nome">Convidado</label>
+                        <div class="col-md-12 col-sm-12" style="">
+                                <div class="card border-danger mb-3">
+                                    <h2 class="card-header border-danger p-4"> {{titulo}}</h2>
+                                    <p class="card-body p-4"><strong>Data:</strong> {{data_casamento}}</p>
+                                    <form action="/casamento/{{id}}/detalhes" method="post" class="p-4">
+                                        <label class="" for="nome">Convidado</label>
                                         <input type="text" id="nome" name="nome" placeholder="Nome Completo" class="btn btn-outiline-danger border border-danger rounded" required>
-                                        <button  type="submit" class="btn btn-outiline-danger border border-danger rounded">Enviar</button>
+                                        <button  type="submit" class="mx-1 btn btn-outiline-danger border border-danger rounded">Enviar</button>
                                     </form> 
                                 
                                 </div>
