@@ -1,6 +1,6 @@
 <div class="container-md-12">
     <header class="row">
-                <img  src="/img/teste.jpeg"  alt="{{thicasamento.nome}}" class="">
+        <img  src="{{casamento.imagens}}" alt="{{thicasamento.nome}}" class="">
           
             
 
@@ -18,12 +18,16 @@
                         <div class="col-lg-4">
                             <div class="team-card h-100 ">
                                 <img src="{{imagem}}" alt="{{nome}}" class="team-image w-100">
-                                <div class="p-4">
-                                    <h5>{{nome}}</h5>
-                                    <p class="text-muted mb-4">R$ {{preco}}</p>
-                                    <button role="button" class="btn btn-danger " onclick="adicionarAoCarrinho({{@index}})">Presentear</button>
+                                <div class="p-3">
+                                    <h5 class="p-1">{{nome}}</h5>
+                                    <p class="text-muted mb-4 p-1">R$ {{preco}}</p>
+                                    <div class="row">
+                                        <button role="button" class="btn btn-secondary col " onclick="adicionarAoCarrinho({{@index}})">Presentear</button>
+                                    </div>
                                 </div>
                             </div>
+
+
                         </div>
                     {{/each}}
                 {{else}}
@@ -46,7 +50,7 @@
             <div id="alert"></div>
             <p><strong>Total:</strong>R$ <span id="total">0.00</span></p>
             <button type="button" class="btn btn-success" onclick="finalizarPedidos()">🎁 Registrar Presente</button>
-            <button type="button" class="btn btn-secondary" onclick="LimparCarrinho()">🗑 Limpar Lista</button>
+            <button type="button" class="btn btn-danger" onclick="LimparCarrinho()">🗑 Limpar Lista</button>
             <div class="justify-content-center ">
                  <img src="/img/qrcod.jpeg" alt="pagamento" class="rounded mx-auto d-block"> 
             </div>
