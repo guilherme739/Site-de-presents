@@ -1,6 +1,6 @@
 <div class="container-md-12">
     <header class="row">
-        <img  src="{{casamento.imagens}}" alt="{{thicasamento.nome}}" class="">
+        <img  src="{{casamento.imagens}}" alt="{{casamento.nome}}" class="img-fluid w-100 mb-3">
           
             
 
@@ -19,11 +19,9 @@
                             <div class="team-card h-100 ">
                                 <img src="{{imagem}}" alt="{{nome}}" class="team-image w-100">
                                 <div class="p-3">
-                                    <h5 class="p-1">{{nome}}</h5>
-                                    <p class="text-muted mb-4 p-1">R$ {{preco}}</p>
-                                    <div class="row">
-                                        <button role="button" class="btn btn-secondary col " onclick="adicionarAoCarrinho({{@index}})">Presentear</button>
-                                    </div>
+                                    <h5 class="p-1" style="height: 100px;">{{nome}}</h5>
+                                    <p class="text-muted  p-1">R$ {{preco}}</p>
+                                        <button role="button" class="btn btn-secondary  " onclick="adicionarAoCarrinho({{@index}})">Presentear</button>
                                 </div>
                             </div>
 
@@ -35,6 +33,12 @@
                         <p>Sem Presentes Disponíveis.</p>
                     </div>
                 {{/if}}
+
+                <div>
+                    <footer class="conteiner-fluid">
+                        <p class="text-center"> Todos direitos reservados por Casare.com &copy;</p>
+                    </footer>
+                </div>
             </div>
         </section>
     </div>
@@ -52,14 +56,14 @@
             <button type="button" class="btn btn-success" onclick="finalizarPedidos()">🎁 Registrar Presente</button>
             <button type="button" class="btn btn-danger" onclick="LimparCarrinho()">🗑 Limpar Lista</button>
             <div class="justify-content-center ">
-                 <img src="/img/qrcod.jpeg" alt="pagamento" class="rounded mx-auto d-block"> 
+                 <img src="/img/qrcod.jpeg" alt="pagamento" class="rounded mx-auto d-block">
             </div>
-           
-            </div>
-        </div>
     </div>
+    
   </div>
 </div>
+
+    
     <!-- JSON com os presentes vindos do backend -->
     <script>
         const presentes = [
@@ -67,11 +71,15 @@
                 {
                     nome: "{{nome}}",
                     preco: {{preco}},
-                    imagem: "{{imagem}}"
+                    imagem: "{{imagem}}",
+                    convidado: {{id}}
                 }{{#unless @last}},{{/unless}}
             {{/each}}
         ];
     </script>
+
+     
+
 
     <!-- SCRIPT DO CARRINHO -->
     <script>
@@ -119,7 +127,7 @@
             }
 
             const nomes = carrinho.map(p => p.nome).join(", ");
-            alert(`Obrigado pela escolha!\nPresentes:\n ${nomes} \n`);
+            alert(`Obrigado pela escolha!\nPresentes:\n ${nomes}\n`);
         }
 
         function LimparCarrinho() {
